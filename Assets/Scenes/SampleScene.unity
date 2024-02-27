@@ -1840,7 +1840,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Welcome To My Game
+  m_Text: Welcome To Old Input System Task
 --- !u!222 &1487521640
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2074,7 +2074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bddd803b03b72445fb56ad1378d012d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIMS: {fileID: 2059753393}
+  UImanagerscript: {fileID: 2059753393}
   duration: 0.5
 --- !u!1 &1627042158
 GameObject:
@@ -2355,7 +2355,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1822844146}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 963194227}
@@ -3180,7 +3180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2059753392
 Transform:
   m_ObjectHideFlags: 0
@@ -3219,11 +3219,11 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
+  - {fileID: 357418281}
   - {fileID: 2059753392}
-  - {fileID: 1672098890}
   - {fileID: 1508070687}
+  - {fileID: 1672098890}
   - {fileID: 1822844150}
   - {fileID: 1944877772}
   - {fileID: 345572864}
-  - {fileID: 357418281}
   - {fileID: 1011576335}

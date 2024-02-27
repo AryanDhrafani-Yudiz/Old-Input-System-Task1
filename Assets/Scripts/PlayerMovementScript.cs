@@ -8,7 +8,7 @@ public class PlayerMovementScript : MonoBehaviour
     private Vector3 diff;
     private float width;
     private float height;
-    public UIManagerScript UIMS;
+    public UIManagerScript UImanagerscript;
     private Vector3 currPosition;
     [SerializeField] private float duration;
 
@@ -24,13 +24,14 @@ public class PlayerMovementScript : MonoBehaviour
     }
     void Update()
     {
-        if (UIMS.gameplayscreen)
-        {
-            if (Input.touchCount == 1)
+        //if (UImanagerscript.gameplayscreen)
+        //{
+        if (Input.touchCount == 1)
             {
                 Touch touch = Input.GetTouch(0);
                 if (touch.phase == TouchPhase.Began)
                 {
+                    Debug.Log("Touch Begin");
                     Vector2 pos = touch.position;
                     pos.x = (pos.x - width) / width;
                     pos.y = (pos.y - height) / height;
@@ -38,16 +39,17 @@ public class PlayerMovementScript : MonoBehaviour
                 }
                 if (touch.phase == TouchPhase.Ended)
                 {
+                    Debug.Log("Touch Ended");
                     Vector2 pos = touch.position;
                     pos.x = (pos.x - width) / width;
                     pos.y = (pos.y - height) / height;
                     position2 = new Vector3(pos.x, 0.0f, pos.y);
                     diff = (position2 - position1);
-                    //currPosition = transform.position;
+                    currPosition=transform.position;
                     StartCoroutine(MoveCube(currPosition+diff, duration));
                 }
             }
-        }
+        //}
     }
     
     IEnumerator MoveCube(Vector3 endPosition, float duration)
