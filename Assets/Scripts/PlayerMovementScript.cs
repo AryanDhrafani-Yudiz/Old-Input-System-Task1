@@ -26,7 +26,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         //if (UImanagerscript.gameplayscreen)
         //{
-        if (Input.touchCount == 1)
+            if (Input.touchCount == 1)
             {
                 Touch touch = Input.GetTouch(0);
                 if (touch.phase == TouchPhase.Began)
