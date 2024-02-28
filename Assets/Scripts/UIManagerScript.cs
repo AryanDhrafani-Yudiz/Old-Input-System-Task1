@@ -13,14 +13,12 @@ public class UIManagerScript : MonoBehaviour
         HomeScreenCanvas.enabled = true;
         GamePlayCanvas.enabled = false;
         PauseCanvas.enabled = false;
-        playerTransform.position = new Vector3(0, 0.5f, 0);
     }
     public void GamePlayScreen()
     {
         gameplayscreen = true;
         GamePlayCanvas.enabled = true;
         HomeScreenCanvas.enabled = false;
-        playerTransform.position = new Vector3(0, 0.5f, 0);
     }
     public void HomeScreen()
     {
@@ -29,6 +27,7 @@ public class UIManagerScript : MonoBehaviour
         HomeScreenCanvas.enabled = true;
         PauseCanvas.enabled = false;
         playerTransform.position = new Vector3(0,0.5f,0);
+        playerTransform.rotation = Quaternion.identity;
     }
     public void OnPause()
     {

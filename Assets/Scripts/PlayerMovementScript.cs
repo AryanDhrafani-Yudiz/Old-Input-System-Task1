@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour
@@ -10,7 +9,8 @@ public class PlayerMovementScript : MonoBehaviour
     private float height;
     public UIManagerScript UImanagerscript;
     private Vector3 currPosition;
-    [SerializeField] private float duration;
+    private Vector3 endPosition;
+    [SerializeField] private float speed;
 
     void Awake()
     {
@@ -19,51 +19,37 @@ public class PlayerMovementScript : MonoBehaviour
     }
     void Start()
     {
+        Application.targetFrameRate = 120;   
         transform.position = new Vector3(0, 0.5f, 0);
         currPosition = transform.position;
+
+        Screen.autorotateToPortrait = false;
+        Screen.autorotateToPortraitUpsideDown = false;
+        Screen.orientation = ScreenOrientation.AutoRotation;
     }
     void Update()
     {
-        //if (UImanagerscript.gameplayscreen)
-        //{
-            if (Input.touchCount == 1)
-            {
-                Touch touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Began)
-                {
-                    Debug.Log("Touch Begin");
-                    Vector2 pos = touch.position;
-                    pos.x = (pos.x - width) / width;
-                    pos.y = (pos.y - height) / height;
-                    position1 = new Vector3(pos.x, 0.0f, pos.y);
-                }
-                if (touch.phase == TouchPhase.Ended)
-                {
-                    Debug.Log("Touch Ended");
-                    Vector2 pos = touch.position;
-                    pos.x = (pos.x - width) / width;
-                    pos.y = (pos.y - height) / height;
-                    position2 = new Vector3(pos.x, 0.0f, pos.y);
-                    diff = (position2 - position1);
-                    currPosition=transform.position;
-                    StartCoroutine(MoveCube(currPosition+diff, duration));
-                }
-            }
-        //}
-    }
-    
-    IEnumerator MoveCube(Vector3 endPosition, float duration)
-    {
-        float time = 0;
-        Vector3 startPosition = currPosition;
-
-        while (time < duration)
+        if (UImanagerscript.gameplayscreen)
         {
-            transform.position = Vector3.Lerp(startPosition, endPosition, time / duration);
-            time += Time.deltaTime;
-            yield return null;
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector2 pos = Input.mousePosition;
+                pos.x = (pos.x - width) / width;
+                pos.y = (pos.y - height) / height;
+                position1 = new Vector3(pos.x, 0.0f, pos.y);
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                Vector2 pos = Input.mousePosition;
+                pos.x = (pos.x - width) / width;
+                pos.y = (pos.y - height) / height;
+                position2 = new Vector3(pos.x, 0.0f, pos.y);
+                diff = (position2 - position1);
+                currPosition = transform.position;
+                endPosition = currPosition + diff;
+                transform.LookAt(endPosition);
+                transform.position = Vector3.MoveTowards(currPosition, endPosition, speed * Time.deltaTime);
+            }
         }
-        transform.position = endPosition;
-        currPosition = endPosition;
     }
 }
