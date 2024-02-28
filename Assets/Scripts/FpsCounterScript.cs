@@ -4,14 +4,16 @@ using System.Collections;
 public class Fps : MonoBehaviour
 {
     private float count;
+    private WaitForSeconds countWait;
 
     private IEnumerator Start()
     {
+        countWait = new WaitForSeconds(0.1f);
         GUI.depth = 2;
         while (true)
         {
             count = 1f / Time.unscaledDeltaTime;
-            yield return new WaitForSeconds(0.1f);
+            yield return countWait;
         }
     }
 
