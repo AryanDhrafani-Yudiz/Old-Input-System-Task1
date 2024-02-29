@@ -34,41 +34,47 @@ public class PlayerMovementScript : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))    // When First Clicked At A Point On Screen
                 {
+                    if (!EventSystem.current.IsPointerOverGameObject())
+                    {
                         Vector2 pos = Input.mousePosition;
-                        FindStartingLocation(pos);
+                        JoystickStartingLocation(pos);
+                    }
                 }
                 else if (Input.GetMouseButton(0))   // When The Joystick Is Being Moved
                 {
+                    if (!EventSystem.current.IsPointerOverGameObject())
+                    {
                         Vector2 pos = Input.mousePosition;
-                        FindCurrentLocation(pos);
+                        JoystickMovedToLocation(pos);
+                    }
                 }
             }
             else if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
-                if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                if (!EventSystem.current.IsPointerOverGameObject(0))
                 {
                     if (touch.phase == TouchPhase.Began)    // When First Clicked At A Point On Screen
                     {
                         Vector2 pos = touch.position;
-                        FindStartingLocation(pos);
+                        JoystickStartingLocation(pos);
                     }
                     else if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)   // When The Joystick Is Being Moved Or Is Stationary
                     {
                         Vector2 pos = touch.position;
-                        FindCurrentLocation(pos);
+                        JoystickMovedToLocation(pos);
                     }
-                }
+                }               
             }
         }
     }
-    void FindStartingLocation(Vector2 pos)
+    void JoystickStartingLocation(Vector2 pos)
     {
         pos.x = (pos.x - width) / width;
         pos.y = (pos.y - height) / height;
         position1 = new Vector3(pos.x, 0.0f, pos.y);
     }
-    void FindCurrentLocation(Vector2 pos)
+    void JoystickMovedToLocation(Vector2 pos)
     {
         pos.x = (pos.x - width) / width;
         pos.y = (pos.y - height) / height;
