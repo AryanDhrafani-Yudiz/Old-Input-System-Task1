@@ -1909,9 +1909,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!4 &755085213
 Transform:
@@ -2565,9 +2565,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!1 &1021097034
 GameObject:
@@ -5402,7 +5402,7 @@ MonoBehaviour:
   HomeScreenCanvas: {fileID: 1822844149}
   GamePlayCanvas: {fileID: 345572863}
   PauseCanvas: {fileID: 1944877771}
-  gameplayscreen: 0
+  gamePlayScreen: 0
   playerTransform: {fileID: 1508070687}
 --- !u!1 &2131908045
 GameObject:
