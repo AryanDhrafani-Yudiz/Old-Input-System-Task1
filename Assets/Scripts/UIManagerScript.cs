@@ -5,7 +5,7 @@ public class UIManagerScript : MonoBehaviour
     [SerializeField] private Canvas HomeScreenCanvas;
     [SerializeField] private Canvas GamePlayCanvas;
     [SerializeField] private Canvas PauseCanvas;
-    public bool gameplayscreen=false;
+    public bool gamePlayScreen=false;
     public Transform playerTransform;
 
     void Start()
@@ -16,13 +16,13 @@ public class UIManagerScript : MonoBehaviour
     }
     public void GamePlayScreen()
     {
-        gameplayscreen = true;
+        gamePlayScreen = true;
         GamePlayCanvas.enabled = true;
         HomeScreenCanvas.enabled = false;
     }
     public void HomeScreen()
     {
-        gameplayscreen = false;
+        gamePlayScreen = false;
         GamePlayCanvas.enabled = false;
         HomeScreenCanvas.enabled = true;
         PauseCanvas.enabled = false;
@@ -31,13 +31,13 @@ public class UIManagerScript : MonoBehaviour
     }
     public void OnPause()
     {
-        gameplayscreen = false;
+        gamePlayScreen = false;
         GamePlayCanvas.enabled = false;
         PauseCanvas.enabled = true;
     }
     public void OnResume()
     {
-        gameplayscreen = true;
+        gamePlayScreen = true;
         GamePlayCanvas.enabled = true;
         PauseCanvas.enabled = false;
     }

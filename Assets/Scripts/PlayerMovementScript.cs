@@ -28,7 +28,7 @@ public class PlayerMovementScript : MonoBehaviour
     }
     void Update()
     {
-        if (UImanagerscript.gameplayscreen)     // Move Only If GamePlayScreen Bool Is True
+        if (UImanagerscript.gamePlayScreen)     // Move Only If GamePlayScreen Bool Is True
         {
             if(Input.mousePresent)
             {
