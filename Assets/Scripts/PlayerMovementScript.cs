@@ -13,6 +13,7 @@ public class PlayerMovementScript : MonoBehaviour
     private Vector3 endPosition;
     [SerializeField] private float speed;
     private float relativeSpeed;
+    private float directionAngle;
 
     void Awake()
     {
@@ -79,11 +80,17 @@ public class PlayerMovementScript : MonoBehaviour
         pos.x = (pos.x - width) / width;
         pos.y = (pos.y - height) / height;
         position2 = new Vector3(pos.x, 0.0f, pos.y);
-        diff = (position2 - position1);                           // Difference In Vector3
-        relativeSpeed = Mathf.Clamp(diff.magnitude, 0.3f, 0.7f);  // Clamps The Magnitude Of Difference (Float Value Of Difference) Between Required Min,Max Values
+        diff = (position2 - position1);                               // Difference In Vector3
+        relativeSpeed = Mathf.Clamp(diff.magnitude, 0.3f, 0.7f);      // Clamps The Magnitude Of Difference (Float Value Of Difference) Between Required Min,Max Values
         currPosition = transform.position;
         endPosition = currPosition + diff;
-        transform.LookAt(endPosition);                            // Cube Looks Towards The Desired Area According To Movement Of Joystick
+        //transform.LookAt(endPosition);                              // Old Method Of Cube Looking Towards The Desired Area According To Movement Of Joystick
+        directionAngle = Mathf.Atan2(diff.x, diff.z) * Mathf.Rad2Deg; // To Find The Angle Value Between Difference
+        if (directionAngle != 0)
+            { 
+                transform.rotation = Quaternion.Lerp(transform.rotation , Quaternion.Euler(0f,directionAngle , 0f) , Time.deltaTime * speed);
+            }
+        //Debug.Log((Mathf.Atan2(diff.x, diff.z) * Mathf.Rad2Deg));   // Testing Done , Working
         transform.position = Vector3.MoveTowards(currPosition, endPosition, speed * relativeSpeed * Time.deltaTime);    // For Actual Movement Of Cube
     }
 }
